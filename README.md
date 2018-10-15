@@ -8,7 +8,7 @@ https://github.com/NVIDIA-Jetson/jetson-trashformers/wiki/Jetson%E2%84%A2-Flashi
 
  https://github.com/jetsonhacks/installROSTX2
  
-#Kernel installation
+# Kernel installation
 ```
 git clone https://www.temple.edu
 ```
