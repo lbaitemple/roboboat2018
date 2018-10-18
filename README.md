@@ -24,24 +24,24 @@ $sudo ./flash.sh jetson-tx2 mmcblk0p1
 
 - Watch: https://www.youtube.com/watch?v=80c5j0rSN_0
 
--$sudo nvpmodel -m 0 //to check if its in Max mode
+  $sudo nvpmodel -m 0 //to check if its in Max mode
 
--$sudo nvpmodel -q //to verify max mode
+  $sudo nvpmodel -q //to verify max mode
 
 1. Get the repository
 
--$cd buildJetsonTx2kernel
+  $cd buildJetsonTx2kernel
 
--$./getkernelsources.sh
+  $./getkernelsources.sh
 
 2. In local, name the new kernel
 3. Find and select CH341, CP210x (USB ports)
 
--$./makekernel.sh
+  $./makekernel.sh
 
--$./copyImage.sh //copy the image over
+  $./copyImage.sh //copy the image over
 
--$sudo reboot
+  $sudo reboot
 
 # Install ROS
  https://github.com/jetsonhacks/installROSTX2
