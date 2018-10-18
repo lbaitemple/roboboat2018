@@ -1,12 +1,4 @@
 # roboboat2018
-
-check reference at
-
-https://github.com/NVIDIA-Jetson/jetson-trashformers/wiki/Jetson%E2%84%A2-Flashing-and-Setup-Guide-for-a-Connect-Tech-Carrier-Board
-
-(new kernel update link) https://github.com/jetsonhacks/buildJetsonTX2Kernel
-
- https://github.com/jetsonhacks/installROSTX2
  
 # Flashing Jetson TX2 Board
 
@@ -29,12 +21,16 @@ $sudo ./flash.sh jetson-tx2 mmcblk0p1
 -$sudo nvpmodel -m 0 //to check if its in Max mode
 -$sudo nvpmodel -q //to verify max mode
 1. Get the repository
+
 -$cd buildJetsonTx2kernel
 -$./getkernelsources.sh
+
 2. In local, name the new kernel
 3. Find and select CH341, CP210x (USB ports)
+
 -$./makekernel.sh
 -$./copyImage.sh //copy the image over
 -$sudo reboot
 
-
+# Install ROS
+ https://github.com/jetsonhacks/installROSTX2
