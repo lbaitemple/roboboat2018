@@ -30,18 +30,18 @@ $sudo ./flash.sh jetson-tx2 mmcblk0p1
 
 1. Get the repository
 
-  $cd buildJetsonTx2kernel
+    $cd buildJetsonTx2kernel
 
-  $./getkernelsources.sh
+    $./getkernelsources.sh
 
 2. In local, name the new kernel
 3. Find and select CH341, CP210x (USB ports)
 
-  $./makekernel.sh
+    $./makekernel.sh
 
-  $./copyImage.sh //copy the image over
+    $./copyImage.sh //copy the image over
 
-  $sudo reboot
+    $sudo reboot
 
 # Install ROS
  https://github.com/jetsonhacks/installROSTX2
