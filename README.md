@@ -17,7 +17,7 @@ https://github.com/NVIDIA-Jetson/jetson-trashformers/wiki/Jetson%E2%84%A2-Flashi
 
 - The actual code:
 
-$sudo ./flash.sh jetson-tx2 mmcblk0p1
+    $sudo ./flash.sh jetson-tx2 mmcblk0p1
 # Make Kernel
 
 (new kernel update link) https://github.com/jetsonhacks/buildJetsonTX2Kernel
