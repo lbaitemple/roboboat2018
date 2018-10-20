@@ -56,4 +56,18 @@ reboot your system and make sure the board boots using your customized kernel.
     $sudo reboot
 ``` 
 # Install ROS
- https://github.com/jetsonhacks/installROSTX2
+- https://github.com/jetsonhacks/installROSTX2
+- https://shiroku.net/robotics/setup-ros-on-jetson-tx2/
+``` 
+cd installROSTX2
+``` 
+Run the install ROS TX2 
+``` 
+$ ./installROS.sh -p ros-kinetic-desktop -p ros-kinetic-rgbd-launch
+``` 
+Now that ROS is installed we need to create a workspace we can do...
+``` 
+$ ./setupCatkinWorkspace.sh
+$ cd ~/catkin_ws/
+$ source /opt/ros/kinetic/setup.bash
+``` 
