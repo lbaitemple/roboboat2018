@@ -13,3 +13,7 @@ https://www.youtube.com/watch?v=wf3Vdmn4seI
 I2C to control  servo motor
 
 https://www.jetsonhacks.com/nvidia-jetson-tx2-j21-header-pinout/\
+
+-PWM simple example C++
+
+https://www.jetsonhacks.com/2015/10/14/pwm-servo-driver-board-nvidia-jetson-tk1/
