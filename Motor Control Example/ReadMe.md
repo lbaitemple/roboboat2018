@@ -27,3 +27,5 @@ https://www.jetsonhacks.com/2015/10/14/pwm-servo-driver-board-nvidia-jetson-tk1/
             pca9685->setPWM(0,0,servoMin) ;
             pca9685->setPWM(12,0,servoMin) ;
 ```
+This website has basics that will allow us to create subcriber Motors controls example in python
+https://snapcraft.io/blog/your-first-robot-introduction-to-the-robot-operating-system-2-5
