@@ -17,3 +17,8 @@ https://www.jetsonhacks.com/nvidia-jetson-tx2-j21-header-pinout/\
 -PWM simple example C++
 
 https://www.jetsonhacks.com/2015/10/14/pwm-servo-driver-board-nvidia-jetson-tk1/
+
+# Week 1 (no bai)
+- we were able to get PCA9685 to work with pins 27 and 28 on the JETSON tx2 which is BUS 0 on the board.
+- We were able to get a basic servo motor to run to ensure that the PWM worked.
+- we used the servoExample code from the JHPWMDriver from Jetson Hacks
