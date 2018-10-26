@@ -22,3 +22,8 @@ https://www.jetsonhacks.com/2015/10/14/pwm-servo-driver-board-nvidia-jetson-tk1/
 - we were able to get PCA9685 to work with pins 27 and 28 on the JETSON tx2 which is BUS 0 on the board.
 - We were able to get a basic servo motor to run to ensure that the PWM worked.
 - we used the servoExample code from the JHPWMDriver from Jetson Hacks
+```
+	//This is currently set to give PWM to channels 0 and 12 on the board... change as you like
+            pca9685->setPWM(0,0,servoMin) ;
+            pca9685->setPWM(12,0,servoMin) ;
+```
