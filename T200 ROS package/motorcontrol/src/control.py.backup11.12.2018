@@ -2,22 +2,17 @@
 import rospy
 
 from std_msgs.msg import Int32
-from geometry_msgs.msg import Vector3
 from random import randint
 from PWM import T200
 
 a=T200(0x70, 50)
 counter = 0
-check = 0
+check =0
 preVal = 0
 
 def random_callback(msg):
-    rospy.loginfo("I heard %f %f", msg.x, msg.y)
-    print msg.x
-    a.setServo(0, msg.x)
-  
-    
-    
+    print msg.data
+    a.setServo(0, msg.data)
 '''
     if msg.data == 1:
 	random_callback1(msg)
@@ -26,21 +21,6 @@ def random_callback(msg):
     if msg.data == 3:
 	random_callback3(msg)
 '''
-def startmotor():
-	rospy.init_node('motorcontrol')
-#       sub=rospy.Subscriber('motor/speed', Int32, random_callback,queue_size=1)
-        sub=rospy.Subscriber('motor/speed', Vector3, random_callback,queue_size=1)
-        print "Im gonna go again"
-        rospy.spin()
-
-if __name__=='__main__':
-#This is a top level function that handles motor controls in ROS
-        startmotor()
-	
-
-''' 
-Functions below can be utilized for settings
-
 def random_callback1(msg):
 	    global counter
 	    global check
@@ -91,5 +71,12 @@ def random_callback3(msg):
 	    print "In callback"
 	    counter = counter + 1
 	    preVal = msg.data
-'''
+
+if __name__=='__main__':
+            #This is a top level function that handles motor controls in ROS
+        rospy.init_node('motorcontrol')
+        sub=rospy.Subscriber('motor/speed', Int32, random_callback)
+        print "Im gonna go again"
+        rospy.spin()
+
 

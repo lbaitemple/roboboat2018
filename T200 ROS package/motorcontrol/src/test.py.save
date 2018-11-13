@@ -4,6 +4,6 @@ a=T200(0x70, 50)
 
 
 while True:
-    a.setServo(0, 120)
+    a.setServo(0, 1	0)
     time.sleep(1)
 
