@@ -18,7 +18,7 @@ class T200:
 #  140-170 = counter clockwise (foward)
 #  170-190 = clockwise	(backwards)
 
-    def setServo(self, channel, value):
+    def setServo(self, channel, value, value2):
          	if value == 170:
 			print "STOP"
 		if 140 < value < 170:
@@ -30,11 +30,43 @@ class T200:
 		number = 10
         	number = float(number)
        		number = number / 100 * 450
+		number2 = number
         	number = number + value
+		number2 = number2 + value2
         	number = int(number);
+		number2 = int(number2);
 #        	print "Writing ", number, " to motor"
         	self.pwm.setPWM(channel, 0, number)
+		self.pwm.setPWM(12, 0, number2)
+		time.sleep(1/4)
+
+		number = 50
+		number = float(number)
+        	number = number / 100 * 450
+		number2 = number
+        	number = number + value
+		number2 = number2 + value2
+        	number = int(number);
+		number2 = int(number2);
+#        	print "Writing ", number, " to motor"
+        	self.pwm.setPWM(channel, 0, number)
+		self.pwm.setPWM(12, 0, number2)
+		time.sleep(1)
+
+'''
+#		print "this is channel", channel
+#		print "this is value", value
+		channel2 = 1;
+		channel2 = int(channel2);
+		number2 = 10
+        	number2 = float(number2)
+       		number2 = number2 / 100 * 450
+        	number2 = number2 + value2
+        	number2 = int(number2);
+#        	print "Writing ", number, " to motor"
+        	self.pwm.setPWM(channel2, 0, number2)
 		time.sleep(1)	
+
 		number = 50
 		number = float(number)
         	number = number / 100 * 450
@@ -42,8 +74,17 @@ class T200:
         	number = int(number);
 #        	print "Writing ", number, " to motor"
         	self.pwm.setPWM(channel, 0, number)
+		channel2 = 1;
+		channel2 = int(channel2);
+		number2 = 50
+		number2 = float(number2)
+        	number2 = number2 / 100 * 450
+        	number2 = number2 + value2
+        	number2 = int(number2);
+#        	print "Writing ", number, " to motor"
+        	self.pwm.setPWM(channel2, 0, number2)
 		time.sleep(1)
-	
+'''	
 '''
 THIS IS JAY ... I'LL be back this code down there works but we cant publish new numbers to change motor speed/direction
 Will be back 1050 (@_@)
