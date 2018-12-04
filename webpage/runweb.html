@@ -9,14 +9,14 @@ http://wiki.ros.org/roslibjs/Tutorials/BasicRosFunctionality
 <!--
 The next two lines bring in the JavaScript files that support rosbridge integration.
 -->
-<script type="text/javascript" src="./eventemitter2.min.js"></script>
-<script type="text/javascript" src="./roslib.min.js"></script>
+<script type="text/javascript" src="eventemitter2.min.js"></script>
+<script type="text/javascript" src="roslib.min.js"></script>
 
 <script type="text/javascript" type="text/javascript">
 
 // This function connects to the rosbridge server running on the local computer on port 9090
 var rbServer = new ROSLIB.Ros({
-    url : 'ws://10.109.79.183:9090'
+    url : 'ws://10.109.79.183:9090' //Change it everytime in new environment
  });
 
  // This function is called upon the rosbridge connection event
