@@ -2,6 +2,7 @@
  
 from L3GD20 import L3GD20
 import time
+import math
  
 # Communication object
 s = L3GD20(busId = 0, slaveAddr = 0x6b, ifLog = False, ifWriteBlock=False)
@@ -14,6 +15,19 @@ s.Set_AxisY_Enabled(True)
 s.Set_AxisZ_Enabled(True)
 s.Init() # Do measurements after Init!
 s.Calibrate()
+
+
+def dist(a,b):
+    return math.sqrt((a*a)+(b*b))
+ 
+def get_y_rotation(x,y,z):
+    radians = math.atan2(x, dist(y,z))
+    return -math.degrees(radians)
+ 
+def get_x_rotation(x,y,z):
+    radians = math.atan2(y, dist(x,z))
+    return math.degrees(radians)
+
  
 # Calculate angle
 dt = 0.02
@@ -26,4 +40,5 @@ while 1==1:
     x += dxyz[0]*dt;
     y += dxyz[1]*dt;
     z += dxyz[2]*dt;
-    print("{:7.2f} {:7.2f} {:7.2f}".format(x, y, z))
+#    print("{:7.2f} {:7.2f} {:7.2f}".format(x, y, z))
+    print(get_x_rotation(x,y,z), get_y_rotation(x,y,z))
