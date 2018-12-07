@@ -9,14 +9,14 @@ http://wiki.ros.org/roslibjs/Tutorials/BasicRosFunctionality
 <!--
 The next two lines bring in the JavaScript files that support rosbridge integration.
 -->
-<script type="text/javascript" src=".\\eventemitter2.min.js"></script>
-<script type="text/javascript" src=".\\roslib.min.js"></script>
+<script type="text/javascript" src="./eventemitter2.min.js"></script>
+<script type="text/javascript" src="./roslib.min.js"></script>
 
 <script type="text/javascript" type="text/javascript">
 
 // This function connects to the rosbridge server running on the local computer on port 9090
 var rbServer = new ROSLIB.Ros({
-    url : 'ws://10.109.79.183:9090' //Change it everytime in new environment
+    url : 'ws://10.109.66.52:9090'
  });
 
  // This function is called upon the rosbridge connection event
@@ -44,16 +44,23 @@ rbServer.on('close', function() {
 var cmdVelTopic = new ROSLIB.Topic({
     ros : rbServer,
     name : '/motor/speed',
-    messageType : 'geometry_msgs/Vector3'
+    messageType : 'geometry_msgs/Twist'
 });
 
 // These lines create a message that conforms to the structure of the Twist defined in our ROS installation
 // It initalizes all properties to zero. They will be set to appropriate values before we publish this message.
 var mov = new ROSLIB.Message({
-        x : 0.0,
-        y : 0.0,
+      linear : {
+        x : 105,
+        y : 105,
         z : 0.0
- });
+     },
+     angular : {
+        x : -0.1,
+        y : -0.2,
+        z : -0.3
+     }
+  });
 
 /* This function:
  - retrieves numeric values from the text boxes
