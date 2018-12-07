@@ -16,7 +16,7 @@ The next two lines bring in the JavaScript files that support rosbridge integrat
 
 // This function connects to the rosbridge server running on the local computer on port 9090
 var rbServer = new ROSLIB.Ros({
-    url : 'ws://10.109.66.52:9090'
+    url : 'ws://10.109.64.123:9090'
  });
 
  // This function is called upon the rosbridge connection event
@@ -81,8 +81,8 @@ function pubMessage() {
     right = 0 + Number(document.getElementById('rightText').value);
 
     // Set the appropriate values on the message object
-    mov.x = left;
-    mov.y = right;
+    mov.linear.x = left;
+    mov.linear.y = right;
 
     // Publish the message 
     cmdVelTopic.publish(mov);
