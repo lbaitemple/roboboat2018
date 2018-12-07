@@ -12,6 +12,23 @@ class T200:
         self.pwm = PWM(self.port)
         self.pwm.setPWMFreq(self.freq)
 
+    def init(self, port=0x70, freq=60):
+        self.port = port
+        self.freq = freq
+        self.pwm = PWM(self.port)
+        self.pwm.setPWMFreq(self.freq)
+
+    def setPort(self, port=0x70):
+        self.port = port
+        self.pwm = PWM(self.port)
+        self.pwm.setPWMFreq(self.freq)
+
+    def setFreq(self, freq=60):
+        self.freq = freq
+        self.pwm = PWM(self.port)
+        self.pwm.setPWMFreq(self.freq)
+
+
 
 # pulseVal approximations for ESC
 # ~170 = stopped

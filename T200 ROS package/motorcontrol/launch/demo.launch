@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch"/>
+
+    <arg name="port" default="0x70" />
+    <arg name="freq" default="50" />
+ 
+    <node name="motor" pkg="motorcontrol" type="control.py" output="screen">
+     <param name="i2c_port" value="$(arg port)" />
+    <param name="i2c_freq" value="$(arg freq)" />
+    </node>
+</launch>  
