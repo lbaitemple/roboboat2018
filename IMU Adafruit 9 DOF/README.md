@@ -5,3 +5,7 @@ https://learn.adafruit.com/lsm303-accelerometer-slash-compass-breakout/python-ci
 
 we are using this to get out 
 http://mpolaczyk.pl/raspberry-pi-series-l3gd20-gyroscope-minimu-9-v2-python-library/
+
+
+https://learn.adafruit.com/i2c-addresses/the-list
+MAYBE IMPORTANT 
