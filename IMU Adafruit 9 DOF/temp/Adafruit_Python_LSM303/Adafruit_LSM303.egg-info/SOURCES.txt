@@ -1,0 +1,8 @@
+setup.py
+Adafruit_LSM303/LSM303.py
+Adafruit_LSM303/__init__.py
+Adafruit_LSM303.egg-info/PKG-INFO
+Adafruit_LSM303.egg-info/SOURCES.txt
+Adafruit_LSM303.egg-info/dependency_links.txt
+Adafruit_LSM303.egg-info/requires.txt
+Adafruit_LSM303.egg-info/top_level.txt

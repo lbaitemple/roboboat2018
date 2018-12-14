@@ -1,19 +1,22 @@
-#!/usr/bin/python
+#!/usr/bin.env python
+#
+# Python translation of Arduino code provided by Frankie.Chu
+# for GrovePi+ module.
+#
+#
+# Hardware:     Grove - 3-Axis magnetometer/3-axis accelometer (LMS303D)
+#
+#'''
+##
+#'''
 
-from smbus import SMBus
-import bitOps
-import numpy
+import smbus import SMBus
 import time
 import math
 import struct
 
-
-
 ### LSM303 Address ###
-# 19 is acc address , 1e is mag address
-LSM303D_AADDR    = 0x1E # Assuming SA0 grounded
-LSM303D_MADDR    = 0x19 # Assuming SA0 grounded
-
+LSM303D_ADDR    = 0x1E # Assuming SA0 grounded
 
 ### LSM303 Register definitions ###
 TEMP_OUT_L		= 0x05
@@ -92,76 +95,48 @@ def twos_comp(val, bits):
     return val
 #   return val if val < 32768 else val - 65536
 
-
-class LMS303DS(object):
+class accelcomp:
     mag = [0,0,0]
     accel = [0,0,0]
     tiltcomp = [0,0,0]
     heading=0
     headingDegrees=0
     tiltHeading=0
+    bus=smbus.SMBus(0)
     tiltHeadingDegrees=0
 
-    
-    def __init__(self, busId, slaveAddr, ifLog, ifWriteBlock):
-        self.__i2c = SMBus(busId)
-        self.__slave = slaveAddr
-        self.__ifWriteBlock = ifWriteBlock
-        self.__ifLog = ifLog
-        self.__x0 = 0
-
-        bus = self.__i2c
-        whoami = bus.read_byte_data(slaveAddr, WHO_AM_I)
+    def __init__(self):
+        
+        whoami = bus.read_byte_data(LSM303D_ADDR, WHO_AM_I)
 
         if(whoami == 0x49):
-            bus.write_byte_data(LSM303D_AADDR, CTRL_REG1, 0x57) # 0x57 = ODR=50hz, all accel axes on ## maybe 0x27 is Low Res?
-            bus.write_byte_data(LSM303D_AADDR, CTRL_REG2, (3<<6)|(0<<3)) # set full scale +/- 2g
-            bus.write_byte_data(LSM303D_AADDR, CTRL_REG3, 0x00) # no interrupt
-            bus.write_byte_data(LSM303D_AAADDR, CTRL_REG4, 0x00) # no interrupt
-            bus.write_byte_data(LSM303D_AADDR, CTRL_REG5, (4<<2)) # 0x10 = mag 50Hz output rate
-            bus.write_byte_data(LSM303D_AADDR, CTRL_REG6, MAG_SCALE_2) # Magnetic Scale +/1 1.3 Guass
-            bus.write_byte_data(LSM303D_AADDR, CTRL_REG7, 0x00) # 0x00 continuous conversion mode
-
-        whoami = bus.read_byte_data(LSM303D_MADDR, WHO_AM_I)
-        print (whoami)
-        
-    def __del__(self):
-        del(self.__i2c)
-
-    def __log(self, register, mask, current, new):
-        register   = '0b' + bin(register)[2:].zfill(8)
-        mask       = '0b' + bin(mask)[2:].zfill(8)
-        current    = '0b' + bin(current)[2:].zfill(8)
-        new        = '0b' + bin(new)[2:].zfill(8)
-        print('Change in register:' + register + ' mask:' + mask + ' from:' + current + ' to:' + new)
-
-    def Init(self):
-        print("Initiating...")
-
+            bus.write_byte_data(LSM303D_ADDR, CTRL_REG1, 0x57) # 0x57 = ODR=50hz, all accel axes on ## maybe 0x27 is Low Res?
+            bus.write_byte_data(LSM303D_ADDR, CTRL_REG2, (3<<6)|(0<<3)) # set full scale +/- 2g
+            bus.write_byte_data(LSM303D_ADDR, CTRL_REG3, 0x00) # no interrupt
+            bus.write_byte_data(LSM303D_ADDR, CTRL_REG4, 0x00) # no interrupt
+            bus.write_byte_data(LSM303D_ADDR, CTRL_REG5, (4<<2)) # 0x10 = mag 50Hz output rate
+            bus.write_byte_data(LSM303D_ADDR, CTRL_REG6, MAG_SCALE_2) # Magnetic Scale +/1 1.3 Guass
+            bus.write_byte_data(LSM303D_ADDR, CTRL_REG7, 0x00) # 0x00 continuous conversion mode
+            
     def getMag(self):
-        bus = self.__i2c
-        self.mag[X] = twos_comp(bus.read_byte_data(LSM303D_MADDR, OUT_X_H_M) << 8 | 
-                          bus.read_byte_data(LSM303D_MADDR, OUT_X_L_M), 16)
-        self.mag[Y] = twos_comp(bus.read_byte_data(LSM303D_MADDR, OUT_Y_H_M) << 8 | 
-                          bus.read_byte_data(LSM303D_MADDR, OUT_Y_L_M), 16)
-        self.mag[Z] = twos_comp(bus.read_byte_data(LSM303D_MADDR, OUT_Z_H_M) << 8 | 
-                          bus.read_byte_data(LSM303D_MADDR, OUT_Z_L_M), 16)
+        self.mag[X] = twos_comp(bus.read_byte_data(LSM303D_ADDR, OUT_X_H_M) << 8 | 
+                          bus.read_byte_data(LSM303D_ADDR, OUT_X_L_M), 16)
+        self.mag[Y] = twos_comp(bus.read_byte_data(LSM303D_ADDR, OUT_Y_H_M) << 8 | 
+                          bus.read_byte_data(LSM303D_ADDR, OUT_Y_L_M), 16)
+        self.mag[Z] = twos_comp(bus.read_byte_data(LSM303D_ADDR, OUT_Z_H_M) << 8 | 
+                          bus.read_byte_data(LSM303D_ADDR, OUT_Z_L_M), 16)
 
     def getAccel(self):
-        bus = self.__i2c
-       
         accel = [0,0,0]
-        accel[X] = twos_comp(bus.read_byte_data(LSM303D_AADDR, OUT_X_H_A) << 8 | 
-                           bus.read_byte_data(LSM303D_AADDR, OUT_X_L_A), 16)
-        accel[Y] = twos_comp(bus.read_byte_data(LSM303D_AADDR, OUT_Y_H_A) << 8 | 
-                           bus.read_byte_data(LSM303D_AADDR, OUT_Y_L_A), 16)
-        accel[Z] = twos_comp(bus.read_byte_data(LSM303D_AADDR, OUT_Z_H_A) << 8 | 
-                           bus.read_byte_data(LSM303D_AADDR, OUT_Z_L_A), 16)
+        accel[X] = twos_comp(bus.read_byte_data(LSM303D_ADDR, OUT_X_H_A) << 8 | 
+                           bus.read_byte_data(LSM303D_ADDR, OUT_X_L_A), 16)
+        accel[Y] = twos_comp(bus.read_byte_data(LSM303D_ADDR, OUT_Y_H_A) << 8 | 
+                           bus.read_byte_data(LSM303D_ADDR, OUT_Y_L_A), 16)
+        accel[Z] = twos_comp(bus.read_byte_data(LSM303D_ADDR, OUT_Z_H_A) << 8 | 
+                           bus.read_byte_data(LSM303D_ADDR, OUT_Z_L_A), 16)
 
         for i in range(X, Z+1):
             self.accel[i] = accel[i] / math.pow(2, 15) * ACCEL_SCALE
-
-        return self.accel
 
     def getHeading(self):
         self.heading = math.atan2(self.mag[X], self.mag[Y])
@@ -204,8 +179,7 @@ class LMS303DS(object):
             print 'Pitch {}, cos(pitch) {}, Bool(cos(pitch)) {}'.format(pitch, math.cos(pitch), bool(math.cos(pitch)))
 
     def isMagReady(self):
-        bus = self.__i2c
-        temp =  bus.read_byte_data(LSM303D_MADDR, STATUS_REG_M) & 0x03 & 0x03
+        temp =  bus.read_byte_data(LSM303D_ADDR, STATUS_REG_M) &amp; 0x03
 
         return temp
 
@@ -216,4 +190,23 @@ class LMS303DS(object):
         self.getHeading()
         self.getTiltHeading()
 
+if __name__ == '__main__':
+
+    from time import sleep
+
+    lsm = accelcomp()
+
+    print '     Accelerometer     ||        Compass        ||              Heading'
+    print '   x   |   y   |   z   ||   x   |   y   |   z   ||       calc      | tilt corrected  |'
+    while True:
+        lsm.getAccel()
+        while not bool(lsm.isMagReady()):
+            print 'Not Ready!'
+            sleep(.01)
+        lsm.getMag()
+        lsm.getHeading()
+        lsm.getTiltHeading()
+        print '{0:.3f} |{1:.3f} |{2:.3f} ||{3:6} |{4:6} |{5:6} ||  {6:6} deg     |  {7:6} deg     |'.format(
+                    lsm.accel[X], lsm.accel[Y], lsm.accel[Z], lsm.mag[X], lsm.mag[Y], lsm.mag[Z], lsm.headingDegrees, lsm.tiltHeadingDegrees)
+        sleep(.5)
 

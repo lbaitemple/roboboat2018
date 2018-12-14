@@ -10,9 +10,8 @@ import struct
 
 
 ### LSM303 Address ###
-# 19 is acc address , 1e is mag address
-LSM303D_AADDR    = 0x1E # Assuming SA0 grounded
-LSM303D_MADDR    = 0x19 # Assuming SA0 grounded
+LSM303D_AADDR    = 0x19 # Assuming SA0 grounded
+LSM303D_MADDR    = 0x1E # Assuming SA0 grounded
 
 
 ### LSM303 Register definitions ###
@@ -122,8 +121,6 @@ class LMS303DS(object):
             bus.write_byte_data(LSM303D_AADDR, CTRL_REG6, MAG_SCALE_2) # Magnetic Scale +/1 1.3 Guass
             bus.write_byte_data(LSM303D_AADDR, CTRL_REG7, 0x00) # 0x00 continuous conversion mode
 
-        whoami = bus.read_byte_data(LSM303D_MADDR, WHO_AM_I)
-        print (whoami)
         
     def __del__(self):
         del(self.__i2c)
