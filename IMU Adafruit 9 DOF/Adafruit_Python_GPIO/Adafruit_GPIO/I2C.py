@@ -53,12 +53,15 @@ def get_default_bus():
     elif plat == Platform.BEAGLEBONE_BLACK:
         # Beaglebone Black has multiple I2C buses, default to 1 (P9_19 and P9_20).
         return 1
+####################################################################################################
+#our modifaction to allow this code to work with the jetson tx2 board bus 0
     elif plat == Platform.JETSON_TX2:
-        # Beaglebone Black has multiple I2C buses, default to 1 (P9_19 and P9_2$
+        # change the return value to the i2c bus you want to use.
         return 0
     else:
         raise RuntimeError('Could not determine default I2C bus for platform.')
 
+######################################################################################################        
 def get_i2c_device(address, busnum=None, i2c_interface=None, **kwargs):
     """Return an I2C device for the specified address and on the specified bus.
     If busnum isn't specified, the default I2C bus for the platform will attempt
