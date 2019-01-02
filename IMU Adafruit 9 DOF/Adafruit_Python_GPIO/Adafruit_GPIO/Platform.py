@@ -25,7 +25,9 @@ import re
 UNKNOWN          = 0
 RASPBERRY_PI     = 1
 BEAGLEBONE_BLACK = 2
+###########################################################
 JETSON_TX2       = 4
+###########################################################
 MINNOWBOARD      = 3
 
 def platform_detect():
@@ -46,11 +48,12 @@ def platform_detect():
         return BEAGLEBONE_BLACK
     elif plat.lower().find('armv7l-with-glibc2.4') > -1:
         return BEAGLEBONE_BLACK
-        
+########################################################################
+#creating new platform (JETSON TX2) support.
     plat = platform.platform()
     if plat.lower().find('aarch64-with-ubuntu') > -1:
         return JETSON_TX2
-
+#######################################################################
     # Handle Minnowboard
     # Assumption is that mraa is installed
     try: 
