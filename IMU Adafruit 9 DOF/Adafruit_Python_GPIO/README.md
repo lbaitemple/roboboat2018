@@ -1,3 +1,9 @@
+# TEMPLE FOWLs Modifications 
+The Adafruit GPIO Library does not support the JETSON TX2 i2c.
+with a few adjustments to the i2c.py and platform.py we are able to adjust the library to use BUS 0 of the jetson tx 2 board. 
+If you want to take advantage of the other i2c bus you will have to adjust the code in the i2c.py
+
+
 Adafruit Python GPIO Library
 ============================
 
