@@ -57,7 +57,8 @@ def get_default_bus():
 #our modifaction to allow this code to work with the jetson tx2 board bus 0
     elif plat == Platform.JETSON_TX2:
         # change the return value to the i2c bus you want to use.
-        return 0
+        return 1
+        #return 0 orginally at BUS 0 adjusting code for all sensors to be BUS 1
     else:
         raise RuntimeError('Could not determine default I2C bus for platform.')
 
