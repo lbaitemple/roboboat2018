@@ -29,3 +29,10 @@ https://www.jetsonhacks.com/2015/10/14/pwm-servo-driver-board-nvidia-jetson-tk1/
 ```
 This website has basics that will allow us to create subcriber Motors controls example in python
 https://snapcraft.io/blog/your-first-robot-introduction-to-the-robot-operating-system-2-5
+
+# Spring 2019
+- PCA9685 uses register 0x40 DO NOT USE 0x70 as it does not always work for JETSON TX2
+- Since we are using 0x40 for the regisiter we also have to change from using i2c BUS0 and now use i2c BUS1 
+
+![alt test](https://user-images.githubusercontent.com/25436318/34422299-8aaa4134-ec0c-11e7-9c17-6deef9980773.png)
+- As you can see from the image using i2c BUS0 regisiter 0x40 is being used (UU) it will be better to use i2c BUS1
