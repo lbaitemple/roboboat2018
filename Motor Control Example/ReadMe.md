@@ -35,4 +35,4 @@ https://snapcraft.io/blog/your-first-robot-introduction-to-the-robot-operating-s
 - Since we are using 0x40 for the regisiter we also have to change from using i2c BUS0 and now use i2c BUS1 
 
 ![alt test](https://user-images.githubusercontent.com/25436318/34422299-8aaa4134-ec0c-11e7-9c17-6deef9980773.png)
-- As you can see from the image using i2c BUS0 regisiter 0x40 is being used (UU) it will be better to use i2c BUS1
+- As you can see from the image using i2c BUS0 regisiter 0x40 is being used (UU) it will be better to use i2c BUS1 for this PCA9685 sensor
