@@ -14,3 +14,14 @@ angle_compensate_multiple = 1;
 ```
 roslaunch rplidar_ros view_rplidar_a3.launch
 ```
+to run the program open a terminal and run
+```
+roscore
+```
+then go into the workspace and run the following
+```
+source devel/setup.bash
+roslaunch rplidar_ros view_rplidar_a3.launch
+```
+Then RVIZ should work
+- * This following was running on a Raspberry Pi 3B and ROS kinetic 
