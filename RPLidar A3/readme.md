@@ -10,9 +10,7 @@ Goals
 //angle_compensate_multiple = (int)(1000*1000/current_scan_mode.us_per_sample/10.0/360.0);
 angle_compensate_multiple = 1;
 ```
-- Finishing testing with running 
-```
-roslaunch rplidar_ros view_rplidar_a3.launch
+## Run the program using...
 ```
 to run the program open a terminal and run
 ```
